@@ -4,14 +4,11 @@ using Avalonia.Markup.Xaml;
 
 namespace Pleh.Views
 {
-    public class MainWindow : Window
+    public class WorkspaceView : UserControl
     {
-        public MainWindow()
+        public WorkspaceView()
         {
-            InitializeComponent();
-#if DEBUG
-            this.AttachDevTools(new Avalonia.Input.KeyGesture(Avalonia.Input.Key.D));
-#endif
+            this.InitializeComponent();
         }
 
         private void InitializeComponent()

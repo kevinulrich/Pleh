@@ -1,0 +1,28 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:Pleh.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Pleh.Views.PlaylistView">
+  <StackPanel>
+    <ItemsControl Items="{Binding Clips}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <Grid ColumnDefinitions="50,1*,100" RowDefinitions="Auto,Auto" Margin="4">
+            <Border Background="LightBlue" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="0,0,5,0">
+              <TextBlock Text="M" FontSize="36" HorizontalAlignment="Center"/>
+            </Border>
+            <TextBlock Text="{Binding Title}" Grid.Row="0" Grid.Column="1"/>
+            <TextBlock Text="{Binding Title}" Grid.Row="1" Grid.Column="1" FontSize="24"/>
+            <Button
+              Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
+              FontSize="24"
+              Command="{Binding $parent[views:WorkspaceView].DataContext.LoadClip}"
+              CommandParameter="{Binding .}">LOAD</Button>
+          </Grid>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+  </StackPanel>
+</UserControl>

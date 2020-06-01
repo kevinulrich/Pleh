@@ -1,0 +1,48 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:Pleh.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Pleh.Views.TopBarView">
+  <Grid ColumnDefinitions="1*, 150, 1*" RowDefinitions="Auto" Margin="4">
+    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" >
+      <Button
+        FontSize="24"
+        Command="{Binding $parent.DataContext.AddToPlaylist}"
+        CommandParameter="{Binding $parent[views:MainWindow]}">ADD</Button>
+    </StackPanel>
+    <Border 
+      Grid.Row="0" 
+      Grid.Column="1" 
+      Background="Black">
+      <TextBlock 
+        Text="{Binding TimeFormat}" 
+        VerticalAlignment="Center" 
+        TextAlignment="Center"
+        Foreground="Red"
+        FontSize="32"/>
+    </Border>
+    <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" >
+      <TextBlock Text="AUTO" FontSize="24" VerticalAlignment="Center"/>
+      <Button 
+        FontSize="24"
+        IsVisible="{Binding AutoActive}"
+        Background="Green"
+        Command="{Binding $parent.DataContext.ActivateAuto}">ON</Button>
+      <Button
+        FontSize="24"
+        IsVisible="{Binding !AutoActive}"
+        Command="{Binding $parent.DataContext.ActivateAuto}">ON</Button>
+      <Button
+        FontSize="24"
+        IsVisible="{Binding !AutoActive}"
+        Background="RED"
+        Command="{Binding $parent.DataContext.DeactivateAuto}">OFF</Button>
+      <Button
+        FontSize="24"
+        IsVisible="{Binding AutoActive}"
+        Command="{Binding $parent.DataContext.DeactivateAuto}">OFF</Button>
+    </StackPanel>
+  </Grid>
+</UserControl>

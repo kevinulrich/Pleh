@@ -3,6 +3,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Pleh.ViewModels;
 using Pleh.Views;
+using Pleh.Services;
 
 namespace Pleh
 {

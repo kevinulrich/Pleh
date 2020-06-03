@@ -2,22 +2,35 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Text.Json.Serialization;
 
 namespace Pleh.Models
 {
+    public enum ClipType
+    {
+        Music,
+        Vocal
+    }
     public class Clip
     {
-        public string Source;
+        [JsonIgnore]
+        public string Source { get; set; }
+        public string Artist { get; set; }
         public string Title { get; set; }
-        public double FadeOutStart = 245;
-        public double FadeOutLength = 2;
-        public double FadeInStart = 0.5;
-        public double FadeInLength = 0.1;
+        public double FadeOutStart { get; set; }
+        public double FadeOutLength { get; set; }
+        public double FadeInStart { get; set; }
+        public double FadeInLength { get; set; }
+        public ClipType Type { get; set; }
 
         public Clip(string source)
         {
-            Title = Path.GetFileName(source);
             Source = source;
+        }
+
+        public Clip()
+        {
+            
         }
     }
 }

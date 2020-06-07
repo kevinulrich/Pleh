@@ -6,6 +6,9 @@ using Pleh.Models;
 
 namespace Pleh.Services.AudioService
 {
+    /*
+     * TODO: Decouple ticket from player implementation by using a service to create tickets
+     */
     public class AudioTicket : IDisposable
     {
         private readonly IWavePlayer WavePlayer;
@@ -51,6 +54,11 @@ namespace Pleh.Services.AudioService
         public double GetProgress()
         {
             return SampleProvider.CurrentTime.TotalSeconds;
+        }
+
+        public void SetProgress(double progress)
+        {
+            SampleProvider.CurrentTime = new TimeSpan(0, 0, Convert.ToInt32(progress));
         }
 
         public void Dispose()

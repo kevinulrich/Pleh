@@ -8,6 +8,7 @@ using System.Diagnostics;
 using ReactiveUI;
 using System.Timers;
 using Avalonia.Controls;
+using Pleh.Views;
 
 namespace Pleh.ViewModels
 {
@@ -71,6 +72,18 @@ namespace Pleh.ViewModels
                     break;
                 }
             }
+        }
+
+        public void EditClipMeta(Clip clip)
+        {
+            MetaWindow window = new MetaWindow{
+                DataContext = new MetaWindowViewModel(clip),
+            };
+
+            window.Width = 400;
+            window.Height = 400;
+
+            window.Show();
         }
 
         public void ActivateAuto()

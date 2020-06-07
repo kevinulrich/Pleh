@@ -13,12 +13,14 @@
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
   <ItemGroup>
+    <AvaloniaResource Remove="Views\MetaWindow.xaml" />
     <AvaloniaResource Remove="Views\PlayerView.xaml" />
     <AvaloniaResource Remove="Views\PlaylistView.xaml" />
     <AvaloniaResource Remove="Views\TopBarView.xaml" />
     <AvaloniaResource Remove="Views\WorkspaceView.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Views\MetaWindow.xaml" />
     <None Remove="Views\PlayerView.xaml" />
     <None Remove="Views\PlaylistView.xaml" />
     <None Remove="Views\TopBarView.xaml" />
@@ -51,5 +53,13 @@
     <EmbeddedResource Include="Views\TopBarView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MetaWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Libraries\NAudio.WaveFormRenderer\" />
   </ItemGroup>
 </Project>

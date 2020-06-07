@@ -2,7 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="400"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="400"
         x:Class="Pleh.Views.MetaWindow"
         Title="Edit Clip Meta">
   <StackPanel Background="WhiteSmoke">
@@ -44,8 +44,76 @@
       <StackPanel Orientation="Horizontal">
         <Button Command="{Binding Play}">Play</Button>
         <Button Command="{Binding Pause}">Pause</Button>
+        <TextBlock
+          Text="{Binding Progress}"
+          VerticalAlignment="Center"
+          Margin="5"/>
       </StackPanel>
+      <Grid ColumnDefinitions="90,1*,90,1*,90,1*,90,1*" RowDefinitions="Auto, Auto">
+        <TextBlock
+          Text="Fade In Start"
+          VerticalAlignment="Center"
+          Margin="5"
+          Grid.Row="0" Grid.Column="0"/>
+        <NumericUpDown
+          Grid.Row="0" Grid.Column="1"
+          Margin="5"
+          Value="{Binding FadeInStart}"/>
+        
+        <TextBlock
+          Text="Fade In Length"
+          VerticalAlignment="Center"
+          Margin="5"
+          Grid.Row="1" Grid.Column="0"/>
+        <NumericUpDown
+          Grid.Row="1" Grid.Column="1"
+          Margin="5"
+          Value="{Binding FadeInLength}"/>
+        
+        <TextBlock
+          Text="Ramp In"
+          VerticalAlignment="Center"
+          Margin="5"
+          Grid.Row="0" Grid.Column="2"/>
+        <NumericUpDown
+          Grid.Row="0" Grid.Column="3"
+          Margin="5"
+          Value="{Binding RampIn}"/>
+        
+        <TextBlock
+          Text="Ramp Out"
+          VerticalAlignment="Center"
+          Margin="5"
+          Grid.Row="0" Grid.Column="4"/>
+        <NumericUpDown
+          Grid.Row="0" Grid.Column="5"
+          Margin="5"
+          Value="{Binding RampOut}"/>
+        
+        <TextBlock
+          Text="Fade Out Start"
+          VerticalAlignment="Center"
+          Margin="5"
+          Grid.Row="0" Grid.Column="6"/>
+        <NumericUpDown
+          Grid.Row="0" Grid.Column="7"
+          Margin="5"
+          Value="{Binding FadeOutStart}"/>
+        
+        <TextBlock
+          Text="Fade Out Length"
+          VerticalAlignment="Center"
+          Margin="5"
+          Grid.Row="1" Grid.Column="6"/>
+        <NumericUpDown
+          Grid.Row="1" Grid.Column="7"
+          Margin="5"
+          Value="{Binding FadeOutLength}"/>
+      </Grid>
     </StackPanel>
-
+    <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
+      <Button Command="{Binding ApplyToClipAndSave}" Margin="5">Apply and save</Button>
+      <Button Command="{Binding ApplyToClip}" Margin="5">Apply temporarily</Button>
+    </StackPanel>
   </StackPanel>
 </Window>

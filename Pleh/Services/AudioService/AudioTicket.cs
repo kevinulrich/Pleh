@@ -53,6 +53,11 @@ namespace Pleh.Services.AudioService
 
         public double GetProgress()
         {
+            if(SampleProvider == null)
+            {
+                return 0;
+            }
+
             return SampleProvider.CurrentTime.TotalSeconds;
         }
 

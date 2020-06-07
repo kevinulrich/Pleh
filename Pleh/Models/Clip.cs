@@ -21,6 +21,8 @@ namespace Pleh.Models
         public double FadeOutLength { get; set; }
         public double FadeInStart { get; set; }
         public double FadeInLength { get; set; }
+        public double RampIn { get; set; }
+        public double RampOut { get; set; }
         public ClipType Type { get; set; }
 
         public Clip(string source)

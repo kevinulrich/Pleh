@@ -76,9 +76,9 @@ namespace Pleh.ViewModels
 
         public void EditClipMeta(Clip clip)
         {
-            MetaWindow window = new MetaWindow{
-                DataContext = new MetaWindowViewModel(clip),
-            };
+            MetaWindow window = new MetaWindow();
+
+            window.DataContext = new MetaWindowViewModel(clip, window);
 
             window.Width = 400;
             window.Height = 400;

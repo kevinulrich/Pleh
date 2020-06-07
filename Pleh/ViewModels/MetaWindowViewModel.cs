@@ -11,6 +11,8 @@ using System.IO;
 using Pleh.Services;
 using Pleh.Services.AudioService;
 using System.Timers;
+using Pleh.Views;
+using System.Diagnostics;
 
 namespace Pleh.ViewModels
 {
@@ -18,7 +20,9 @@ namespace Pleh.ViewModels
     {
         private Clip Clip;
         private AudioTicket AudioTicket;
+        private ClipService ClipService;
         private Timer Timer;
+        private MetaWindow MetaWindow;
 
         private string artist;
         public string Artist
@@ -64,13 +68,65 @@ namespace Pleh.ViewModels
             set => this.RaiseAndSetIfChanged(ref image, value);
         }
 
-        public MetaWindowViewModel(Clip clip)
+        private double fadeInStart;
+        public double FadeInStart
+        {
+            get => fadeInStart;
+            set => this.RaiseAndSetIfChanged(ref fadeInStart, value);
+        }
+
+        private double fadeOutStart;
+        public double FadeOutStart
+        {
+            get => fadeOutStart;
+            set => this.RaiseAndSetIfChanged(ref fadeOutStart, value);
+        }
+
+        private double fadeInLength;
+        public double FadeInLength
+        {
+            get => fadeInLength;
+            set => this.RaiseAndSetIfChanged(ref fadeInLength, value);
+        }
+
+        private double fadeOutLength;
+        public double FadeOutLength
+        {
+            get => fadeOutLength;
+            set => this.RaiseAndSetIfChanged(ref fadeOutLength, value);
+        }
+
+        private double rampIn;
+        public double RampIn
+        {
+            get => rampIn;
+            set => this.RaiseAndSetIfChanged(ref rampIn, value);
+        }
+
+        private double rampOut;
+        public double RampOut
+        {
+            get => rampOut;
+            set => this.RaiseAndSetIfChanged(ref rampOut, value);
+        }
+
+        public MetaWindowViewModel(Clip clip, MetaWindow window)
         {
             Clip = clip;
+            MetaWindow = window;
+
             AudioTicket = new AudioTicket(Clip);
+            ClipService = new ClipService();
 
             Title = Clip.Title;
             Artist = Clip.Artist;
+            FadeInStart = Clip.FadeInStart;
+            FadeOutStart = Clip.FadeOutStart;
+            FadeInLength = Clip.FadeInLength;
+            FadeOutLength = Clip.FadeOutLength;
+            RampIn = Clip.RampIn;
+            RampOut = Clip.RampOut;
+
             Image = GetClipVisualization();
 
             Timer = new Timer(100);
@@ -82,6 +138,12 @@ namespace Pleh.ViewModels
             };
 
             Timer.Start();
+
+            MetaWindow.Closing += (s, e) =>
+            {
+                Timer.Stop();
+                AudioTicket.Dispose();
+            };
         }
 
         private void UpdateProgress()
@@ -111,6 +173,24 @@ namespace Pleh.ViewModels
         public void Pause()
         {
             AudioTicket.Pause();
+        }
+
+        public void ApplyToClip()
+        {
+            Clip.Title = Title;
+            Clip.Artist = Artist;
+            Clip.FadeInStart = FadeInStart;
+            Clip.FadeInLength = FadeInLength;
+            Clip.FadeOutStart = FadeOutStart;
+            Clip.FadeOutLength = FadeOutLength;
+            Clip.RampIn = RampIn;
+            Clip.RampOut = RampOut;
+        }
+
+        public void ApplyToClipAndSave()
+        {
+            ApplyToClip();
+            ClipService.WriteMeta(Clip);
         }
 
         private Avalonia.Media.Imaging.Bitmap GetClipVisualization()

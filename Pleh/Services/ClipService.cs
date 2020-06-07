@@ -86,7 +86,7 @@ namespace Pleh.Services
             }
         }
 
-        private void WriteMeta(Clip clip)
+        public void WriteMeta(Clip clip)
         {
             string hash = GetClipHash(clip);
 
@@ -94,7 +94,7 @@ namespace Pleh.Services
             File.WriteAllText(Path.Combine(TrackMetaDirectory, hash), jsonString);
         }
 
-        private bool GetMeta(ref Clip clip)
+        public bool GetMeta(ref Clip clip)
         {
             string hash = GetClipHash(clip);
             string source = clip.Source;

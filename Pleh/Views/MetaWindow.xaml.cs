@@ -12,6 +12,7 @@ namespace Pleh.Views
 #if DEBUG
             this.AttachDevTools();
 #endif
+            MinWidth = 800;
         }
 
         private void InitializeComponent()

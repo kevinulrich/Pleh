@@ -1,4 +1,4 @@
-﻿# Pleh
+# Pleh
 ![Screenshot](Doc/pleh.png)  
 
 Pleh is a tiny piece of software meant for unattended playlist automation. Just load your playlist, flip the AUTO switch and it will go and go. 

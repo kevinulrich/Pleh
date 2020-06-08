@@ -6,7 +6,7 @@
         x:Class="Pleh.Views.MetaWindow"
         Title="Edit Clip Meta">
   <StackPanel Background="WhiteSmoke">
-    <Grid ColumnDefinitions="50,1*" RowDefinitions="Auto, Auto" Margin="10">
+    <Grid ColumnDefinitions="50,1*" RowDefinitions="Auto, Auto, Auto" Margin="10">
       <TextBlock 
         Text="Title"
         VerticalAlignment="Center"
@@ -25,6 +25,18 @@
         Grid.Row="1" Grid.Column="1"
         Margin="5"
         Text="{Binding Artist}"/>
+      <TextBlock
+        Text="Type"
+        VerticalAlignment="Center"
+        Margin="5"
+        Grid.Row="2" Grid.Column="0"/>
+      <ComboBox 
+        SelectedIndex="{Binding ClipTypeIndex}"
+        Margin="5"
+        Grid.Row="2" Grid.Column="1">
+        <ComboBoxItem>Music</ComboBoxItem>
+        <ComboBoxItem>Voicetrack</ComboBoxItem>
+      </ComboBox>
     </Grid>
     <Border
         BorderBrush="Black"

@@ -41,6 +41,24 @@ namespace Pleh.Services
                 ReadyNextClip();
             }
 
+            if( GetCurrentClip().Type == ClipType.Music 
+                && GetNextClip().Type == ClipType.Voicetrack 
+                && currentPlayer.GetSecondsProgress() >= (GetCurrentClip().FadeOutStart - GetNextClip().RampIn) 
+                && currentPlayer.GetSecondsProgress() >= GetCurrentClip().RampOut)
+            {
+                PlayNextClip();
+                return;
+            }
+
+            if (    GetCurrentClip().Type == ClipType.Voicetrack 
+                    && GetNextClip().Type == ClipType.Music 
+                    && currentPlayer.GetSecondsProgress() >= GetCurrentClip().RampOut
+                    && (GetCurrentClip().RampOut - currentPlayer.GetSecondsProgress()) <= GetNextClip().RampIn)
+            {
+                PlayNextClip();
+                return;
+            }
+
             if (currentPlayer.GetSecondsProgress() >= GetCurrentClip().FadeOutStart)
             {
                 PlayNextClip();

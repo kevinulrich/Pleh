@@ -110,6 +110,18 @@ namespace Pleh.ViewModels
             set => this.RaiseAndSetIfChanged(ref rampOut, value);
         }
 
+        private ClipType ClipType;
+
+        public int ClipTypeIndex
+        {
+            get => (int) ClipType;
+            set
+            {
+                ClipType = (ClipType) value;
+                this.RaisePropertyChanged();
+            }
+        }
+        
         public MetaWindowViewModel(Clip clip, MetaWindow window)
         {
             Clip = clip;
@@ -126,6 +138,7 @@ namespace Pleh.ViewModels
             FadeOutLength = Clip.FadeOutLength;
             RampIn = Clip.RampIn;
             RampOut = Clip.RampOut;
+            ClipType = Clip.Type;
 
             Image = GetClipVisualization();
 
@@ -185,6 +198,7 @@ namespace Pleh.ViewModels
             Clip.FadeOutLength = FadeOutLength;
             Clip.RampIn = RampIn;
             Clip.RampOut = RampOut;
+            Clip.Type = ClipType;
         }
 
         public void ApplyToClipAndSave()

@@ -9,7 +9,7 @@ namespace Pleh.Models
     public enum ClipType
     {
         Music,
-        Vocal
+        Voicetrack
     }
     public class Clip
     {

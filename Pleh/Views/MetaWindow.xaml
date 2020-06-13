@@ -124,6 +124,7 @@
       </Grid>
     </StackPanel>
     <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
+      <Button Command="{Binding DetectInOut}" Margin="5">Detect In/Out</Button>
       <Button Command="{Binding ApplyToClipAndSave}" Margin="5">Apply and save</Button>
       <Button Command="{Binding ApplyToClip}" Margin="5">Apply temporarily</Button>
     </StackPanel>

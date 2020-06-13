@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Linq;
 
 namespace Pleh.Services
 {
@@ -58,12 +59,48 @@ namespace Pleh.Services
             }
         }
 
-        private void GetTimes(Clip clip)
+        public void GetTimes(Clip clip)
         {
             WaveOutEvent wavePlayer = new WaveOutEvent();
             AudioFileReader sampleProvider = new AudioFileReader(clip.Source);
 
-            clip.FadeOutStart = sampleProvider.TotalTime.TotalSeconds - 2;
+            int bytesPerSample = (sampleProvider.WaveFormat.BitsPerSample / 8);
+            var samples = sampleProvider.Length / (bytesPerSample);
+
+            var samplesPerSecond = samples / sampleProvider.TotalTime.TotalSeconds;
+
+            int blockSize = 12;
+            float[] readBuffer = new float[samples];
+
+            var samplesRead = sampleProvider.Read(readBuffer, 0, readBuffer.Length);
+
+            bool setIn = false;
+
+            for (int x = 0; x < samplesRead; x += blockSize)
+            {
+                double total = 0.0;
+
+                for (int y = 0; y < blockSize && x + y < samplesRead; y++)
+                {
+                    total += readBuffer[x + y] * readBuffer[x + y];
+                }
+
+                float rms = (float)Math.Sqrt(total / blockSize);
+
+                if(rms > 0.1)
+                {
+                    double secondsFromStart = x / samplesPerSecond;
+
+                    if(!setIn)
+                    {
+                        clip.FadeInStart = secondsFromStart;
+                        setIn = true;
+                    }
+                    
+
+                    clip.FadeOutStart = secondsFromStart;
+                }
+            }
 
             wavePlayer.Dispose();
             sampleProvider.Dispose();

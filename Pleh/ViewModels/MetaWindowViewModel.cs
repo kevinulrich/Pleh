@@ -207,6 +207,13 @@ namespace Pleh.ViewModels
             ClipService.WriteMeta(Clip);
         }
 
+        public void DetectInOut()
+        {
+            ClipService.GetTimes(Clip);
+            FadeInStart = Clip.FadeInStart;
+            FadeOutStart = Clip.FadeOutStart;
+        }
+
         private Avalonia.Media.Imaging.Bitmap GetClipVisualization()
         {
             RmsPeakProvider maxPeakProvider = new RmsPeakProvider(1);

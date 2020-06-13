@@ -38,7 +38,7 @@ namespace Pleh.Services.AudioService
         public void Reset()
         {
             WavePlayer.Stop();
-            SampleProvider.Position = 0;
+            SetProgress(Clip.FadeInStart);
         }
 
         public double GetDuration()

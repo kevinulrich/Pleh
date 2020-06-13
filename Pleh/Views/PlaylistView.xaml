@@ -5,36 +5,34 @@
              xmlns:views="clr-namespace:Pleh.Views"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Pleh.Views.PlaylistView">
-  <StackPanel>
-    <ItemsControl Items="{Binding Clips}">
-      <ItemsControl.ItemTemplate>
-        <DataTemplate>
-          <Grid ColumnDefinitions="50,1*,150" RowDefinitions="Auto,Auto" Margin="4">
-            <Border Background="LightBlue" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="0,0,5,0">
-              <TextBlock Text="M" FontSize="36" HorizontalAlignment="Center"/>
-            </Border>
-            <TextBlock Text="{Binding Artist}" Grid.Row="0" Grid.Column="1"/>
-            <TextBlock Text="{Binding Title}" Grid.Row="1" Grid.Column="1" FontSize="24"/>
-            <StackPanel
-            Orientation="Horizontal"
-            HorizontalAlignment="Right"
-            Grid.Row="0" Grid.Column="2" Grid.RowSpan="2">
-              <Button
-              Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
-              FontSize="24"
-              Margin="5"
-              Command="{Binding $parent[views:WorkspaceView].DataContext.EditClipMeta}"
-              CommandParameter="{Binding .}">EDIT</Button>
-              <Button
-              Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
-              FontSize="24"
-              Margin="5"
-              Command="{Binding $parent[views:WorkspaceView].DataContext.LoadClip}"
-              CommandParameter="{Binding .}">LOAD</Button>
-            </StackPanel>
-          </Grid>
-        </DataTemplate>
-      </ItemsControl.ItemTemplate>
-    </ItemsControl>
-  </StackPanel>
+  <ListBox Items="{Binding Clips}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+    <ListBox.ItemTemplate>
+      <DataTemplate>
+        <Grid ColumnDefinitions="50,1*,150" RowDefinitions="Auto,Auto" Margin="4">
+          <Border Background="LightBlue" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="0,0,5,0">
+            <TextBlock Text="M" FontSize="36" HorizontalAlignment="Center"/>
+          </Border>
+          <TextBlock Text="{Binding Artist}" Grid.Row="0" Grid.Column="1"/>
+          <TextBlock Text="{Binding Title}" Grid.Row="1" Grid.Column="1" FontSize="24"/>
+          <StackPanel
+          Orientation="Horizontal"
+          HorizontalAlignment="Right"
+          Grid.Row="0" Grid.Column="2" Grid.RowSpan="2">
+            <Button
+            Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
+            FontSize="24"
+            Margin="5"
+            Command="{Binding $parent[views:WorkspaceView].DataContext.EditClipMeta}"
+            CommandParameter="{Binding .}">EDIT</Button>
+            <Button
+            Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
+            FontSize="24"
+            Margin="5"
+            Command="{Binding $parent[views:WorkspaceView].DataContext.LoadClip}"
+            CommandParameter="{Binding .}">LOAD</Button>
+          </StackPanel>
+        </Grid>
+      </DataTemplate>
+    </ListBox.ItemTemplate>
+  </ListBox>
 </UserControl>

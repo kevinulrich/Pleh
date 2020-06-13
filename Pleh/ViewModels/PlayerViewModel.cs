@@ -99,7 +99,7 @@ namespace Pleh.ViewModels
 
             PerthousandProgress = (int)Math.Floor(AudioTicket.GetProgress() / AudioTicket.GetDuration() * 1000);
 
-            if(AudioTicket.GetRemaining() == 0)
+            if(AudioTicket.GetProgress() >= Player.Clip.FadeOutStart)
             {
                 Pause();
             }
@@ -124,6 +124,7 @@ namespace Pleh.ViewModels
             State = PlayerState.Paused;
 
             AudioTicket = new AudioTicket(Player.Clip);
+            Reset();
             Timer.Start();
 
             return true;

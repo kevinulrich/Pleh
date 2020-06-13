@@ -11,6 +11,7 @@ namespace Pleh.Services
     {
         private readonly WorkspaceViewModel Workspace;
         private Timer Timer;
+        private PlayerViewModel CurrentPlayer;
 
         public bool Enabled { get; private set; } = false;
 
@@ -72,6 +73,11 @@ namespace Pleh.Services
 
         private PlayerViewModel GetCurrentPlayer()
         {
+            if(CurrentPlayer != null)
+            {
+                return CurrentPlayer;
+            }
+
             double maxTimeRemaining = 0;
             PlayerViewModel activePlayer = null;
 
@@ -143,6 +149,7 @@ namespace Pleh.Services
                 if (player.State == PlayerState.Paused && player.Player.Clip == GetNextClip())
                 {
                     player.Play();
+                    CurrentPlayer = player;
                 }
             }
         }
@@ -157,6 +164,7 @@ namespace Pleh.Services
         {
             Timer.Stop();
             Enabled = false;
+            CurrentPlayer = null;
         }
     }
 }

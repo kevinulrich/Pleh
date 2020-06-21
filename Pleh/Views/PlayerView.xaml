@@ -20,17 +20,33 @@
       <Border
         DockPanel.Dock="Bottom"
         Padding="5">
-        <Grid ColumnDefinitions="180,50,1*,50" RowDefinitions="Auto,Auto" Margin="4">
+        <Grid ColumnDefinitions="290,50,1*,50" RowDefinitions="Auto,Auto" Margin="4">
           <StackPanel 
             Orientation="Horizontal"
             Grid.Row="0" 
             Grid.Column="0" 
             Grid.RowSpan="2">
             <Button
-            FontSize="24"
-            Command="{Binding $parent.DataContext.PlayButtonPress}"
-            Margin="5"
-            Width="50">►</Button>
+              FontSize="24"
+              Command="{Binding $parent.DataContext.PlayButtonPress}"
+              Margin="5"
+              Width="50">►</Button>
+            <Button
+              FontSize="24"
+              Command="{Binding $parent.DataContext.FadeInButtonPress}"
+              Margin="5"
+              Padding="15"
+              Width="50">
+              <Image Source="resm:Pleh.Assets.Icons.fadein.png"/>
+            </Button>
+            <Button
+              FontSize="24"
+              Command="{Binding $parent.DataContext.FadeOutButtonPress}"
+              Margin="5"
+              Padding="15"
+              Width="50">
+              <Image Source="resm:Pleh.Assets.Icons.fadeout.png"/>
+            </Button>
             <Button
               FontSize="24"
               Command="{Binding $parent.DataContext.PauseButtonPress}"

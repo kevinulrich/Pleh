@@ -148,7 +148,7 @@ namespace Pleh.Services
             {
                 if (player.State == PlayerState.Paused && player.Player.Clip == GetNextClip())
                 {
-                    player.Play();
+                    player.FadeIn();
                     CurrentPlayer = player;
                 }
             }

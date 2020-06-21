@@ -101,7 +101,7 @@ namespace Pleh.ViewModels
 
             if(AudioTicket.GetProgress() >= Player.Clip.FadeOutStart)
             {
-                Pause();
+                FadeOut();
             }
         }
 
@@ -145,6 +145,16 @@ namespace Pleh.ViewModels
             Play();
         }
 
+        public void FadeInButtonPress()
+        {
+            FadeIn();
+        }
+
+        public void FadeOutButtonPress()
+        {
+            FadeOut();
+        }
+
         public void PauseButtonPress()
         {
             Pause();
@@ -182,6 +192,30 @@ namespace Pleh.ViewModels
             AudioTicket.Play();
 
             State = PlayerState.Playing;
+        }
+
+        public void FadeIn()
+        {
+            if (AudioTicket == null || State == PlayerState.Playing)
+            {
+                return;
+            }
+
+            AudioTicket.FadeIn();
+
+            State = PlayerState.Playing;
+        }
+
+        public void FadeOut()
+        {
+            if (AudioTicket == null || State == PlayerState.Paused)
+            {
+                return;
+            }
+
+            AudioTicket.FadeOut();
+
+            State = PlayerState.Paused;
         }
 
         public void Reset()

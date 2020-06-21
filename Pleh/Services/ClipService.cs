@@ -49,6 +49,8 @@ namespace Pleh.Services
             TagLib.File file = TagLib.File.Create(clip.Source);
             clip.Title = file.Tag.Title;
             clip.Artist = String.Join(", ", file.Tag.Performers);
+            clip.FadeInLength = 0.5;
+            clip.FadeOutLength = 2;
         }
 
         private void PrepareFolders()

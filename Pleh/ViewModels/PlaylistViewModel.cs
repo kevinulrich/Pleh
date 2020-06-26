@@ -12,6 +12,7 @@ namespace Pleh.ViewModels
     public class PlaylistViewModel : ViewModelBase
     {
         public Playlist Playlist { get; private set; }
+        public List<Clip> SelectedItems { get; private set; } = new List<Clip>();
 
         private ObservableCollection<Clip> clips;
         public ObservableCollection<Clip> Clips
@@ -31,6 +32,19 @@ namespace Pleh.ViewModels
         {
             Clips.Add(clip);
             Playlist.List.Add(clip);
+        }
+
+        public void RemoveSelectedClip()
+        {
+            if(SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            for(int i = 0; i < SelectedItems.Count; i++)
+            {
+                Clips.Remove(SelectedItems[i]);
+            }
         }
     }
 }

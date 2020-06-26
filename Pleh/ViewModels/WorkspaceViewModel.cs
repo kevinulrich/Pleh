@@ -98,6 +98,11 @@ namespace Pleh.ViewModels
             AutoActive = false;
         }
 
+        public void DeletePress()
+        {
+            RemoveFromPlaylist();
+        }
+
         public async void AddToPlaylist(Avalonia.Controls.Window window)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
@@ -109,6 +114,11 @@ namespace Pleh.ViewModels
             {
                 Playlist.AddClip(ClipService.CreateClipFromSourceFile(file));
             }
+        }
+
+        public void RemoveFromPlaylist()
+        {
+            Playlist.RemoveSelectedClip();
         }
     }
 }

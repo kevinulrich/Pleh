@@ -5,7 +5,7 @@
              xmlns:views="clr-namespace:Pleh.Views"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Pleh.Views.PlaylistView">
-  <ListBox Items="{Binding Clips}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+  <ListBox SelectedItems="{Binding SelectedItems}" Items="{Binding Clips}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
     <ListBox.ItemTemplate>
       <DataTemplate>
         <Grid ColumnDefinitions="50,1*,150" RowDefinitions="Auto,Auto" Margin="4">

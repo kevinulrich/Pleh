@@ -9,4 +9,7 @@
         Icon="/Assets/pleh.ico"
         Title="Pleh"
         Content="{Binding Workspace}">
+  <Window.KeyBindings>
+    <KeyBinding Gesture="Delete" Command="{Binding DeletePress}" />
+  </Window.KeyBindings>
 </Window>
